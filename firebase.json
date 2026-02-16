@@ -45,15 +45,15 @@
       },
       {
         "source": "/payment-success",
-        "destination": "/products/fieldforge/index.html"
+        "destination": "/products/fieldforge/payment-success.html"
       },
       {
         "source": "/payment-cancelled",
-        "destination": "/products/fieldforge/index.html"
+        "destination": "/products/fieldforge/payment-cancelled.html"
       },
       {
         "source": "/stripe-connect/**",
-        "destination": "/products/fieldforge/index.html"
+        "destination": "/products/fieldforge/stripe-connect.html"
       }
     ],
     "headers": [
