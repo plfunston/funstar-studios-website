@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="description" content="FieldForge — AI-powered field service management for contractors. Quote faster, get paid quicker, and run your business like a pro."/>
+  <title>FieldForge — Forging Your Success</title>
+
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+  <meta property="og:title" content="FieldForge — Forging Your Success"/>
+  <meta property="og:description" content="AI-powered field service management for contractors. Quote faster. Get paid quicker. Run like a pro."/>
+  <meta property="og:image" content="/social_share_1200x630.jpg"/>
+  <meta property="og:type" content="website"/>
+
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1224;
+      --card:#0F1B35cc;
+      --stroke:#2B3A63;
+      --text:#EAF0FF;
+      --muted:#B8C3E6;
+      --blue:#2563EB;
+      --blue2:#1D4ED8;
+      --amber:#F59E0B;
+      --orange:#F97316;
+      --good:#22C55E;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 10% 10%, #14214b 0%, rgba(11,18,36,0) 55%),
+                  radial-gradient(1000px 700px at 90% 20%, #1b2b61 0%, rgba(11,18,36,0) 60%),
+                  linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 100%);
+      overflow-x:hidden;
+    }
+
+    /* Top nav */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(7,10,18,.55);
+      border-bottom: 1px solid rgba(43,58,99,.45);
+    }
+    .nav{
+      max-width:1100px; margin:0 auto; padding:20px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text);
+      font-weight:900; letter-spacing:.2px;
+    }
+    .brand img{width:160px; height:160px; object-fit:contain; transition:all 0.3s}
+    .brand img:hover{transform:scale(1.05)}
+    .brand span{font-size:24px}
+    .links{display:flex; align-items:center; gap:18px}
+    .links a{
+      color:var(--muted); text-decoration:none; font-weight:600; font-size:14px;
+      padding:8px 10px; border-radius:10px;
+    }
+    .links a:hover{color:var(--text); background: rgba(37,99,235,.10)}
+    .cta{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px; border-radius:12px;
+      color:#0B1224; text-decoration:none; font-weight:800; font-size:14px;
+      background: linear-gradient(135deg, #ffffff 0%, #dce8ff 100%);
+      box-shadow: 0 10px 30px rgba(37,99,235,.25);
+      border: 1px solid rgba(255,255,255,.35);
+    }
+    .cta small{opacity:.8; font-weight:700}
+    .cta:hover{transform: translateY(-1px)}
+    .cta:active{transform: translateY(0px)}
+
+    /* Hero */
+    .hero{
+      position:relative;
+      max-width:1100px; margin:0 auto; padding:68px 18px 28px;
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:28px;
+      align-items:center;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr; padding-top:46px}
+      .links{display:none}
+    }
+
+    #sparks{
+      position:absolute; inset:-120px -120px auto -120px;
+      width: calc(100% + 240px);
+      height: 520px;
+      pointer-events:none;
+      filter: blur(.2px);
+      opacity:.9;
+    }
+
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px; border-radius:999px;
+      background: rgba(37,99,235,.12);
+      border: 1px solid rgba(37,99,235,.35);
+      color: #dbe7ff;
+      font-weight:800; font-size:12px;
+      width:fit-content;
+    }
+    .badge .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: linear-gradient(180deg, var(--amber), var(--orange));
+      box-shadow: 0 0 22px rgba(245,158,11,.55);
+    }
+
+    h1{
+      margin:14px 0 10px;
+      font-size:56px; line-height:1.02;
+      letter-spacing:-1px;
+    }
+    @media (max-width: 520px){
+      h1{font-size:42px}
+    }
+    .motto{
+      margin:10px 0 18px;
+      font-size:22px;
+      font-weight:800;
+      letter-spacing:.2px;
+      color: #fff;
+    }
+    .motto em{
+      font-style:normal;
+      background: linear-gradient(90deg, var(--amber), var(--orange), #fff);
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent;
+      text-shadow: 0 0 26px rgba(249,115,22,.18);
+    }
+    .sub{
+      margin:0 0 24px;
+      max-width: 54ch;
+      color: var(--muted);
+      font-size:16px;
+      line-height:1.6;
+    }
+    .heroActions{
+      display:flex; gap:12px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .btnPrimary{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:12px 16px; border-radius:14px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue2) 100%);
+      border: 1px solid rgba(255,255,255,.18);
+      color:white; text-decoration:none; font-weight:900;
+      box-shadow: 0 18px 50px rgba(37,99,235,.35);
+    }
+    .btnPrimary:hover{filter: brightness(1.05); transform: translateY(-1px)}
+    .btnGhost{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:12px 16px; border-radius:14px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(43,58,99,.55);
+      color: var(--text); text-decoration:none; font-weight:900;
+    }
+    .btnGhost:hover{background: rgba(255,255,255,.09)}
+
+    /* Hero right: phone mock */
+    .mock{
+      position:relative;
+      border-radius: 22px;
+      padding: 16px;
+      background: linear-gradient(180deg, rgba(15,27,53,.75), rgba(15,27,53,.35));
+      border: 1px solid rgba(43,58,99,.55);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      min-height: 360px;
+    }
+    .mock:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 220px at 30% 0%, rgba(249,115,22,.25), rgba(0,0,0,0) 55%),
+                  radial-gradient(500px 260px at 70% 10%, rgba(37,99,235,.25), rgba(0,0,0,0) 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .mockInner{
+      position:relative;
+      border-radius:18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(7,10,18,.55);
+      padding: 18px;
+    }
+    .mockTop{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      margin-bottom:14px;
+    }
+    .mockTop .left{display:flex; align-items:center; gap:10px}
+    .pill{
+      font-size:12px; font-weight:900; color:#0B1224;
+      background: linear-gradient(135deg, #fff, #dce8ff);
+      padding:8px 10px; border-radius:999px;
+    }
+    .kpi{
+      display:grid; grid-template-columns:1fr 1fr; gap:10px;
+      margin-top:14px;
+    }
+    .kpi .card{
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(43,58,99,.50);
+      border-radius:16px;
+      padding:12px;
+    }
+    .kpi .card b{display:block; font-size:14px}
+    .kpi .card span{color:var(--muted); font-size:12px}
+
+    /* Section */
+    section{max-width:1100px; margin:0 auto; padding:28px 18px}
+    .sectionTitle{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size:28px; letter-spacing:-.4px;
+    }
+    .sectionTitle p{margin:0; color:var(--muted)}
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr 1fr} }
+    @media (max-width: 560px){ .grid{grid-template-columns:1fr} }
+
+    .feature{
+      position:relative;
+      background: linear-gradient(180deg, rgba(15,27,53,.70), rgba(15,27,53,.35));
+      border: 1px solid rgba(43,58,99,.55);
+      border-radius:18px;
+      padding:16px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.25);
+      overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .feature:hover{
+      transform: translateY(-2px);
+      border-color: rgba(37,99,235,.55);
+      background: linear-gradient(180deg, rgba(15,27,53,.78), rgba(15,27,53,.45));
+    }
+    .feature:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(240px 120px at 18% 0%, rgba(37,99,235,.22), rgba(0,0,0,0) 60%),
+                  radial-gradient(240px 120px at 80% 0%, rgba(249,115,22,.18), rgba(0,0,0,0) 55%);
+      opacity:.8;
+      pointer-events:none;
+    }
+    .feature > *{position:relative}
+    .icon{
+      width:40px; height:40px; border-radius:14px;
+      display:grid; place-items:center;
+      background: rgba(37,99,235,.14);
+      border: 1px solid rgba(37,99,235,.35);
+      margin-bottom:10px;
+      box-shadow: 0 0 0 6px rgba(37,99,235,.06);
+    }
+    .feature h3{margin:0 0 6px; font-size:16px}
+    .feature p{margin:0; color:var(--muted); font-size:13px; line-height:1.55}
+
+    .how{
+      display:grid; grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 900px){ .how{grid-template-columns:1fr} }
+
+    .step{
+      border-radius:18px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(43,58,99,.55);
+      padding:16px;
+    }
+    .step b{display:block; font-size:14px}
+    .step span{color:var(--muted); font-size:13px}
+
+    .footer{
+      margin-top:28px;
+      border-top: 1px solid rgba(43,58,99,.45);
+      padding: 26px 18px;
+      color: var(--muted);
+    }
+    .footerInner{
+      max-width:1100px; margin:0 auto;
+      display:flex; justify-content:space-between; align-items:flex-start; gap:18px; flex-wrap:wrap;
+    }
+    .footer a{color:#dbe7ff; text-decoration:none}
+    .footer a:hover{text-decoration:underline}
+    .fine{font-size:12px; color: rgba(184,195,230,.85)}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="nav">
+    <div style="display:flex;align-items:center;gap:14px">
+      <a href="/" style="text-decoration:none;display:flex;align-items:center">
+        <img src="/assets/logos/funstar-studios-240.png" alt="Funstar Studios" style="width:240px;height:auto" onerror="this.style.display='none'"/>
+      </a>
+      <span style="color:rgba(43,58,99,.55);font-size:28px">|</span>
+      <a class="brand" href="/products/fieldforge/">
+        <img src="/assets/logos/fieldforge-logo-transparent.png" alt="FieldForge logo" onerror="this.src='/favicon.ico'"/>
+      </a>
+    </div>
+
+    <nav class="links" aria-label="primary">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#support">Support</a>
+      <a href="privacy">Privacy</a>
+      <a href="terms">Terms</a>
+    </nav>
+
+    <a class="cta" href="#signup">App Store <small>Coming soon</small></a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <canvas id="sparks"></canvas>
+
+    <div>
+      <div class="badge"><span class="dot"></span> AI-powered field service management for contractors</div>
+      <h1>Run the job.<br/>Forge the business.</h1>
+      <div class="motto"><em>Forging Your Success</em> — in the field, in real time.</div>
+      <p class="sub">
+        Quote faster with AI, invoice cleanly, take payments, and keep your customers, schedules, and recurring work under control —
+        without the admin drag.
+      </p>
+
+      <div class="heroActions" id="signup">
+        <a class="btnPrimary" href="#support">Get notified for launch &rarr;</a>
+        <a class="btnGhost" href="#features">See features</a>
+      </div>
+    </div>
+
+    <aside class="mock" aria-label="FieldForge preview">
+      <div class="mockInner">
+        <div class="mockTop">
+          <div class="left">
+            <img src="/assets/logos/fieldforge-logo-128.png" alt="" style="width:36px;height:36px;border-radius:12px;border:1px solid rgba(255,255,255,.12)" onerror="this.style.display='none'"/>
+            <div>
+              <div style="font-weight:900">Live job snapshot</div>
+              <div style="color:var(--muted);font-size:12px">Quote &rarr; Invoice &rarr; Paid</div>
+            </div>
+          </div>
+          <span class="pill">Coming soon</span>
+        </div>
+
+        <div style="display:grid; gap:10px">
+          <div class="feature" style="padding:14px">
+            <div style="display:flex; justify-content:space-between; gap:10px; align-items:center">
+              <div>
+                <div style="font-weight:900">Invoice #1042</div>
+                <div style="color:var(--muted);font-size:12px">Lawn &bull; Recurring &bull; AUD</div>
+              </div>
+              <div style="font-weight:900; font-size:18px">$165</div>
+            </div>
+            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap">
+              <span class="pill">AI estimate &#10003;</span>
+              <span class="pill">Link sent &#10003;</span>
+              <span class="pill" style="background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.45);color:#d9ffe7">Paid</span>
+            </div>
+          </div>
+
+          <div class="kpi">
+            <div class="card">
+              <b>Jobs this week</b>
+              <span>Scheduled + completed</span>
+              <div style="margin-top:8px;font-size:22px;font-weight:900">18</div>
+            </div>
+            <div class="card">
+              <b>Time saved</b>
+              <span>Quotes + admin</span>
+              <div style="margin-top:8px;font-size:22px;font-weight:900">6.2h</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <section id="features">
+    <div class="sectionTitle">
+      <h2>Built for contractors. Powered by AI.</h2>
+      <p>Everything you need to quote, schedule, invoice, and get paid.</p>
+    </div>
+
+    <div class="grid">
+      <div class="feature">
+        <div class="icon">&#129302;</div>
+        <h3>AI photo analysis</h3>
+        <p>Turn site photos into smarter estimates and faster quoting — less back-and-forth, more wins.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">&#128203;</div>
+        <h3>Quotes that convert</h3>
+        <p>Professional quotes and approvals with a clean audit trail (perfect for teams and compliance).</p>
+      </div>
+      <div class="feature">
+        <div class="icon">&#128179;</div>
+        <h3>Get paid quicker</h3>
+        <p>Send payment links, accept cards, and track status — contractors keep their money (minus Stripe fees).</p>
+      </div>
+      <div class="feature">
+        <div class="icon">&#128101;</div>
+        <h3>Customer management</h3>
+        <p>Keep customer details, sites, notes, and history in one place — built for repeat work.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">&#128198;</div>
+        <h3>Scheduling &amp; recurring jobs</h3>
+        <p>Recurring schedules, reminders, and job tracking — so you stop juggling calendars.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">&#10024;</div>
+        <h3>AI assistant</h3>
+        <p>Ask questions, draft messages, and get guidance when you need it — without leaving the job.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="sectionTitle">
+      <h2>How it works</h2>
+      <p>Simple flow. Serious output.</p>
+    </div>
+
+    <div class="how">
+      <div class="step">
+        <b>1) Capture the job</b>
+        <span>Photo, notes, measurements — whatever you have. FieldForge turns it into structure.</span>
+      </div>
+      <div class="step">
+        <b>2) Generate &amp; send</b>
+        <span>Create the quote/invoice and send a payment link or checkout. Clean, professional, trackable.</span>
+      </div>
+      <div class="step">
+        <b>3) Get paid + repeat</b>
+        <span>Mark paid, schedule the next visit, and keep customers coming back with recurring work.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="support">
+    <div class="sectionTitle">
+      <h2>Support</h2>
+      <p>Fast help, real answers.</p>
+    </div>
+
+    <div class="feature" style="padding:18px">
+      <h3 style="margin-bottom:10px">Contact</h3>
+      <p style="font-size:14px">
+        Email: <a href="mailto:support@funstarstudios.com" style="color:#dbe7ff">support@funstarstudios.com</a><br/>
+        Business: Funstar Digital (Australia)
+      </p>
+      <p class="fine" style="margin-top:10px">
+        For Stripe compliance, use the Privacy and Terms links below.
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footerInner">
+      <div style="display:flex; align-items:center; gap:10px">
+        <img src="/assets/logos/fieldforge-logo-transparent.png" alt="FieldForge" style="width:100px;height:100px;object-fit:contain" onerror="this.style.display='none'"/>
+      </div>
+
+      <div style="display:flex; gap:18px; flex-wrap:wrap">
+        <a href="privacy">Privacy</a>
+        <a href="terms">Terms</a>
+        <a href="#features">Features</a>
+        <a href="#support">Support</a>
+      </div>
+
+      <div class="fine">&copy; <span id="y"></span> Funstar Digital. All rights reserved.</div>
+    </div>
+  </footer>
+</main>
+
+<script>
+  // year
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Forge sparks canvas (lightweight particles)
+  const c = document.getElementById('sparks');
+  const ctx = c.getContext('2d');
+  let w, h, dpr;
+
+  function resize(){
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    w = c.clientWidth;
+    h = c.clientHeight;
+    c.width = Math.floor(w*dpr);
+    c.height = Math.floor(h*dpr);
+    ctx.scale(dpr, dpr);
+  }
+
+  const sparks = [];
+  function addSpark(){
+    const x = Math.random()*w;
+    const y = h*(0.35 + Math.random()*0.55);
+    sparks.push({
+      x, y,
+      vx: (-0.7 + Math.random()*1.4),
+      vy: (-2.2 - Math.random()*2.2),
+      life: 60 + Math.random()*60,
+      size: 1 + Math.random()*2.2,
+      hue: 28 + Math.random()*12
+    });
+  }
+
+  function tick(){
+    ctx.clearRect(0,0,w,h);
+
+    // faint glow base
+    const g = ctx.createRadialGradient(w*0.35, h*0.55, 0, w*0.35, h*0.55, Math.max(w,h));
+    g.addColorStop(0, "rgba(249,115,22,0.20)");
+    g.addColorStop(0.35, "rgba(37,99,235,0.10)");
+    g.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,w,h);
+
+    if (sparks.length < 120 && Math.random() < 0.65) addSpark();
+
+    for (let i=sparks.length-1; i>=0; i--){
+      const s = sparks[i];
+      s.x += s.vx;
+      s.y += s.vy;
+      s.vy += 0.03;  // gravity
+      s.life -= 1;
+
+      const a = Math.max(0, Math.min(1, s.life/120));
+      ctx.beginPath();
+      ctx.fillStyle = `hsla(${s.hue}, 95%, 60%, ${0.9*a})`;
+      ctx.shadowBlur = 14;
+      ctx.shadowColor = `hsla(${s.hue}, 95%, 60%, ${0.55*a})`;
+      ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      if (s.life <= 0 || s.y > h+20 || s.x < -20 || s.x > w+20) sparks.splice(i,1);
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  // init — sync canvas to hero container
+  function syncCanvas(){
+    c.style.height = "520px";
+    c.style.width = "100%";
+    resize();
+  }
+
+  window.addEventListener('resize', syncCanvas);
+  syncCanvas();
+  tick();
+</script>
+</body>
+</html>

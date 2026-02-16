@@ -1,0 +1,71 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/*.md"
+    ],
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "/products/fieldforge/",
+        "type": 301
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/privacy",
+        "destination": "/products/fieldforge/privacy.html"
+      },
+      {
+        "source": "/terms",
+        "destination": "/products/fieldforge/terms.html"
+      },
+      {
+        "source": "/products/fieldforge/privacy",
+        "destination": "/products/fieldforge/privacy.html"
+      },
+      {
+        "source": "/products/fieldforge/terms",
+        "destination": "/products/fieldforge/terms.html"
+      },
+      {
+        "source": "/support",
+        "destination": "/products/fieldforge/index.html"
+      },
+      {
+        "source": "/products/fieldforge/support",
+        "destination": "/products/fieldforge/index.html"
+      },
+      {
+        "source": "/q/**",
+        "destination": "/products/fieldforge/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "X-Frame-Options",
+            "value": "SAMEORIGIN"
+          },
+          {
+            "key": "Referrer-Policy",
+            "value": "strict-origin-when-cross-origin"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      }
+    ]
+  }
+}

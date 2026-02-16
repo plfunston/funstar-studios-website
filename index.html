@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="description" content="Funstar Studios — Building AI-powered tools for modern businesses. Home of FieldForge and PromoForge."/>
+  <title>Funstar Studios — Building AI-Powered Business Tools</title>
+
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="apple-touch-icon" href="/assets/logos/funstar-studios-180.png"/>
+
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1224;
+      --card:#0F1B35cc;
+      --stroke:#2B3A63;
+      --text:#EAF0FF;
+      --muted:#B8C3E6;
+      --navy:#252c40;
+      --ember:#af6744;
+      --blue:#2563EB;
+      --orange:#F97316;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 10% 10%, #14214b 0%, rgba(11,18,36,0) 55%),
+                  linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 100%);
+      overflow-x:hidden;
+    }
+
+    /* Navigation */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(7,10,18,.55);
+      border-bottom: 1px solid rgba(43,58,99,.45);
+    }
+    .nav{
+      max-width:1200px; margin:0 auto; padding:20px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text);
+      font-weight:900; letter-spacing:.2px;
+    }
+    .brand img{width:240px; height:auto; object-fit:contain; transition:all 0.3s}
+    .brand img:hover{transform:scale(1.05)}
+    .brand span{font-size:24px}
+    .links{display:flex; align-items:center; gap:18px}
+    .links a{
+      color:var(--muted); text-decoration:none; font-weight:600; font-size:14px;
+      padding:8px 10px; border-radius:10px;
+    }
+    .links a:hover{color:var(--text); background: rgba(37,99,235,.10)}
+
+    /* Hero */
+    .hero{
+      max-width:1100px; margin:0 auto; padding:80px 18px 60px;
+      text-align:center;
+    }
+    h1{
+      margin:0 0 18px;
+      font-size:64px; line-height:1.02;
+      letter-spacing:-1.5px;
+      background: linear-gradient(135deg, var(--orange), var(--ember), #fff);
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent;
+    }
+    .tagline{
+      font-size:28px; font-weight:700;
+      color:var(--text);
+      margin:0 0 48px;
+      max-width:700px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    /* Products Grid */
+    .products{
+      max-width:1100px; margin:0 auto; padding:60px 18px;
+    }
+    .sectionTitle{
+      text-align:center;
+      margin-bottom:48px;
+    }
+    .sectionTitle h2{
+      margin:0 0 12px;
+      font-size:36px; letter-spacing:-.8px;
+    }
+    .sectionTitle p{
+      margin:0; color:var(--muted); font-size:18px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap:24px;
+    }
+    @media (max-width: 520px){
+      .grid{grid-template-columns:1fr}
+      h1{font-size:42px}
+    }
+
+    .productCard{
+      background: linear-gradient(180deg, rgba(15,27,53,.75), rgba(15,27,53,.35));
+      border: 1px solid rgba(43,58,99,.55);
+      border-radius:20px;
+      padding:32px;
+      position:relative;
+      overflow:hidden;
+      transition: all 0.3s;
+    }
+    .productCard:hover{
+      border-color: var(--blue);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(37,99,235,.25);
+    }
+    .productCard:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 220px at 30% 0%, rgba(249,115,22,.15), rgba(0,0,0,0) 55%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .productCard h3{
+      margin:0 0 8px;
+      font-size:32px;
+      position:relative;
+    }
+    .productCard .status{
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:16px;
+      position:relative;
+    }
+    .status.live{
+      background: rgba(34,197,94,.14);
+      border:1px solid rgba(34,197,94,.45);
+      color:#d9ffe7;
+    }
+    .status.coming{
+      background: rgba(249,115,22,.14);
+      border:1px solid rgba(249,115,22,.45);
+      color:#ffd7c2;
+    }
+    .productCard p{
+      color:var(--muted);
+      line-height:1.7;
+      margin:0 0 24px;
+      position:relative;
+    }
+    .productCard a{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:12px 20px;
+      background: linear-gradient(135deg, var(--blue), #1D4ED8);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius:12px;
+      color:white;
+      text-decoration:none;
+      font-weight:900;
+      position:relative;
+    }
+    .productCard a:hover{
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    /* About Section */
+    .about{
+      max-width:800px; margin:0 auto; padding:60px 18px;
+      text-align:center;
+    }
+    .about h2{
+      margin:0 0 24px;
+      font-size:36px;
+    }
+    .about p{
+      color:var(--muted);
+      line-height:1.8;
+      font-size:18px;
+      margin:0 0 16px;
+    }
+    .about .entity{
+      margin-top:48px;
+      padding:24px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(43,58,99,.50);
+      border-radius:16px;
+    }
+    .about .entity p{
+      font-size:14px;
+      margin:0;
+    }
+
+    /* Footer */
+    footer{
+      border-top: 1px solid rgba(43,58,99,.45);
+      padding:48px 18px;
+      margin-top:60px;
+    }
+    .footerInner{
+      max-width:1100px; margin:0 auto;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:24px;
+      text-align:center;
+    }
+    footer .brand{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:8px;
+    }
+    footer .fine{
+      font-size:14px;
+      color:var(--muted);
+    }
+    footer .links{
+      display:flex;
+      gap:24px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    footer .links a{
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:600;
+    }
+    footer .links a:hover{
+      color:var(--text);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a href="/" class="brand">
+        <img src="/assets/logos/funstar-studios-240.png"
+             alt="Funstar Studios"
+             onerror="this.style.display='none'"/>
+      </a>
+      <div class="links">
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="mailto:support@funstarstudios.com">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Funstar Studios</h1>
+      <p class="tagline">Building AI-powered tools for modern businesses</p>
+    </section>
+
+    <section class="products" id="products">
+      <div class="sectionTitle">
+        <h2>Our Products</h2>
+        <p>Purpose-built tools that solve real problems</p>
+      </div>
+
+      <div class="grid">
+        <!-- FieldForge Product Card -->
+        <div class="productCard">
+          <span class="status live">&#9679; Live</span>
+          <h3>FieldForge</h3>
+          <p>
+            AI-powered field service management for contractors.
+            Quote faster with AI photo analysis, invoice cleanly,
+            accept payments, and manage customers — without the admin drag.
+          </p>
+          <a href="/products/fieldforge/">
+            Learn more &rarr;
+          </a>
+        </div>
+
+        <!-- PromoForge Product Card -->
+        <div class="productCard">
+          <span class="status coming">Coming Soon</span>
+          <h3>PromoForge</h3>
+          <p>
+            AI marketing automation for businesses.
+            Generate professional ad content, schedule posts across platforms,
+            and grow your brand — without hiring an agency.
+          </p>
+          <a href="#" style="opacity:0.6; cursor:not-allowed">
+            Coming 2026
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <h2>About Funstar Studios</h2>
+      <p>
+        We build AI-powered tools that make businesses more efficient.
+        No fluff, no feature bloat — just professional software that works.
+      </p>
+      <p>
+        Our flagship product, FieldForge, helps contractors quote jobs faster,
+        get paid quicker, and run their businesses like pros.
+      </p>
+      <p>
+        Based in Australia, we're focused on creating tools that deliver
+        real value to real businesses.
+      </p>
+
+      <div class="entity">
+        <p style="font-weight:700; color:var(--text); margin-bottom:8px">Legal Entity</p>
+        <p>Funstar Digital (ABN: 30 577 818 671)</p>
+        <p>Australia</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footerInner">
+      <div class="brand">
+        <img src="/assets/logos/funstar-studios-240.png"
+             alt="Funstar Studios"
+             style="width:100px;height:100px;object-fit:contain"
+             onerror="this.style.display='none'"/>
+      </div>
+
+      <div class="links">
+        <a href="/products/fieldforge/">FieldForge</a>
+        <a href="/products/fieldforge/privacy">Privacy</a>
+        <a href="/products/fieldforge/terms">Terms</a>
+        <a href="mailto:support@funstarstudios.com">Support</a>
+      </div>
+
+      <div class="fine">
+        &copy; <span id="year"></span> Funstar Digital. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
