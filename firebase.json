@@ -42,6 +42,18 @@
       {
         "source": "/q/**",
         "destination": "/products/fieldforge/index.html"
+      },
+      {
+        "source": "/payment-success",
+        "destination": "/products/fieldforge/index.html"
+      },
+      {
+        "source": "/payment-cancelled",
+        "destination": "/products/fieldforge/index.html"
+      },
+      {
+        "source": "/stripe-connect/**",
+        "destination": "/products/fieldforge/index.html"
       }
     ],
     "headers": [
