@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "fieldforge-production"
+  },
+  "targets": {
+    "fieldforge-production": {
+      "hosting": {
+        "funstar-studios-site": [
+          "funstar-studios"
+        ]
+      }
+    }
+  }
+}

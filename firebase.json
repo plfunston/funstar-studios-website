@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "target": "funstar-studios-site",
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      ".firebaserc",
+      "**/.git/**",
+      "**/.github/**",
+      "**/.claude/**",
+      "**/node_modules/**",
+      "funstar_audit_*.md",
+      ".gitignore",
+      "README.md",
+      "LICENSE"
+    ]
+  }
+}
