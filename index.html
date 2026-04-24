@@ -30,7 +30,11 @@
       --good:#22C55E;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth;scroll-padding-top:80px}
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:0.01ms !important;transition-duration:0.01ms !important}
+    }
     body{
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
       color:var(--text);
@@ -85,8 +89,10 @@
       text-align:center;
     }
     #sparks{
-      position:absolute;inset:-100px -100px auto -100px;
-      width:calc(100% + 200px);height:500px;
+      position:absolute;
+      top:-100px;left:50%;
+      transform:translateX(-50%);
+      width:100vw;height:500px;
       pointer-events:none;filter:blur(.2px);opacity:.85;
     }
     .hero-content{position:relative;z-index:2}
@@ -447,7 +453,7 @@
 
     <div class="products-grid">
       <div class="product-card">
-        <span class="product-status live">&#9679; Live</span>
+        <span class="product-status live">&#9679; Live on App Store</span>
         <h3>FieldForge</h3>
         <p class="product-desc">
           AI-powered field service management for contractors.
@@ -460,9 +466,12 @@
           <span>Firebase</span>
           <span>Stripe</span>
           <span>Twilio</span>
-          <span>342K+ LoC</span>
+          <span>iOS 17.6+</span>
         </div>
-        <a class="product-link" href="/products/fieldforge/">Explore FieldForge &rarr;</a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="product-link" href="https://apps.apple.com/app/fieldforge/id6761880144" target="_blank" rel="noopener">Download on App Store &rarr;</a>
+          <a class="product-link" href="/products/fieldforge/" style="background:rgba(255,255,255,.06);border:1px solid rgba(43,58,99,.5);box-shadow:none">Learn More</a>
+        </div>
       </div>
 
       <div class="product-card">
@@ -616,6 +625,8 @@
   const c = document.getElementById('sparks');
   const ctx = c.getContext('2d');
   let w, h, dpr;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let animating = !reducedMotion.matches;
 
   function resize(){
     dpr = Math.min(2, window.devicePixelRatio || 1);
@@ -671,18 +682,32 @@
       if (s.life <= 0 || s.y > h + 20 || s.x < -20 || s.x > w + 20) sparks.splice(i, 1);
     }
 
-    requestAnimationFrame(tick);
+    if (animating) requestAnimationFrame(tick);
   }
 
   function syncCanvas(){
     c.style.height = "500px";
-    c.style.width = "100%";
+    c.style.width = "100vw";
     resize();
   }
 
+  function startAnim(){
+    if (animating) return;
+    animating = true;
+    tick();
+  }
+  function stopAnim(){ animating = false; }
+
   window.addEventListener('resize', syncCanvas);
+  document.addEventListener('visibilitychange', () => {
+    document.hidden ? stopAnim() : startAnim();
+  });
+  reducedMotion.addEventListener('change', (e) => {
+    e.matches ? stopAnim() : startAnim();
+  });
+
   syncCanvas();
-  tick();
+  if (animating) tick();
 </script>
 </body>
 </html>

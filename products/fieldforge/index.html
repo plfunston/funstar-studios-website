@@ -30,6 +30,11 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
+    html{scroll-behavior:smooth;scroll-padding-top:80px}
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:0.01ms !important;transition-duration:0.01ms !important}
+    }
     body{
       margin:0;
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
@@ -89,9 +94,11 @@
     }
 
     #sparks{
-      position:absolute; inset:-120px -120px auto -120px;
-      width: calc(100% + 240px);
-      height: 520px;
+      position:absolute;
+      top:-120px; left:50%;
+      transform:translateX(-50%);
+      width:100vw;
+      height:520px;
       pointer-events:none;
       filter: blur(.2px);
       opacity:.9;
@@ -319,7 +326,7 @@
       <a href="terms">Terms</a>
     </nav>
 
-    <a class="cta" href="#signup">App Store <small>Coming soon</small></a>
+    <a class="cta" href="https://apps.apple.com/app/fieldforge/id6761880144" target="_blank" rel="noopener">Download on App Store</a>
   </div>
 </header>
 
@@ -337,9 +344,12 @@
       </p>
 
       <div class="heroActions" id="signup">
-        <a class="btnPrimary" href="#support">Get notified for launch &rarr;</a>
+        <a class="btnPrimary" href="https://apps.apple.com/app/fieldforge/id6761880144" target="_blank" rel="noopener">Download on App Store &rarr;</a>
         <a class="btnGhost" href="#features">See features</a>
       </div>
+      <p style="margin-top:14px;color:var(--muted);font-size:13px">
+        Free download &middot; iOS 17.6+ &middot; Account &amp; subscription handled in-app
+      </p>
     </div>
 
     <aside class="mock" aria-label="FieldForge preview">
@@ -352,7 +362,7 @@
               <div style="color:var(--muted);font-size:12px">Quote &rarr; Invoice &rarr; Paid</div>
             </div>
           </div>
-          <span class="pill">Coming soon</span>
+          <span class="pill" style="background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.45);color:#d9ffe7">Live</span>
         </div>
 
         <div style="display:grid; gap:10px">
@@ -494,6 +504,8 @@
   const c = document.getElementById('sparks');
   const ctx = c.getContext('2d');
   let w, h, dpr;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let animating = !reducedMotion.matches;
 
   function resize(){
     dpr = Math.min(2, window.devicePixelRatio || 1);
@@ -550,19 +562,33 @@
       if (s.life <= 0 || s.y > h+20 || s.x < -20 || s.x > w+20) sparks.splice(i,1);
     }
 
-    requestAnimationFrame(tick);
+    if (animating) requestAnimationFrame(tick);
   }
 
   // init — sync canvas to hero container
   function syncCanvas(){
     c.style.height = "520px";
-    c.style.width = "100%";
+    c.style.width = "100vw";
     resize();
   }
 
+  function startAnim(){
+    if (animating) return;
+    animating = true;
+    tick();
+  }
+  function stopAnim(){ animating = false; }
+
   window.addEventListener('resize', syncCanvas);
+  document.addEventListener('visibilitychange', () => {
+    document.hidden ? stopAnim() : startAnim();
+  });
+  reducedMotion.addEventListener('change', (e) => {
+    e.matches ? stopAnim() : startAnim();
+  });
+
   syncCanvas();
-  tick();
+  if (animating) tick();
 </script>
 </body>
 </html>
